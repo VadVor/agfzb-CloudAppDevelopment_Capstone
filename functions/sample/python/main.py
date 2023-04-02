@@ -10,9 +10,10 @@ from cloudant.error import CloudantException
 import requests
 
 def main():
+    """ list of database"""
     current_path = os.getcwd()
     print(current_path)
-    with open('/.creds-sample.json', 'r') as file:
+    with open('/.creds-sample.json', 'r', encoding="utf-8") as file:
         config = json.load(file)
     try:
         client = Cloudant.iam(None,config['IAM_API_KEY'],

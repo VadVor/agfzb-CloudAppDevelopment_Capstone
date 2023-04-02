@@ -6,24 +6,18 @@ Returns:
 from cloudant.client import Cloudant
 from cloudant.error import CloudantException
 import requests
+import json
+import os
 
 
-def main(param_dict):
-    """Main Function
-
-    Args:
-        param_dict (Dict): input paramater
-
-    Returns:
-        _type_: _description_ TODO
-    """
-
+def main():
+   current_path = os.getcwd()
+   print(current_path)
+   with open('/.creds-sample.json', 'r') as f:
+    config = json.load(f)
     try:
-        client = Cloudant.iam(
-            account_name=param_dict["COUCH_USERNAME"],
-            api_key=param_dict["IAM_API_KEY"],
-            connect=True,
-        )
+        client = Cloudant.iam(None,config['IAM_API_KEY'],
+            url=config["COUCH_URL"],connect=True,)
         print(f"Databases: {client.all_dbs()}")
     except CloudantException as cloudant_exception:
         print("unable to connect")

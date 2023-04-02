@@ -3,7 +3,7 @@ from cloudant.error import CloudantException
 import requests
 
 def main(dict):
-  
+    """ get review by dealerID"""
     try:
         client = Cloudant.iam(None,"HdyKq8n3jjkkvWgISvfi5x4cjYbJ-aapt3CB9r0joitf",
             url="https://apikey-v2-2nw8vsvk4u2eljbpggt8fud61i5dirj95nepoejtlco9:82b9dda303b3ab14dd02a015294eb506@1fca574f-7128-40f9-9b10-7857a6d31cd8-bluemix.cloudantnosqldb.appdomain.cloud",

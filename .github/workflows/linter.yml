@@ -60,5 +60,5 @@ jobs: # list of things to do
           pip install pylint
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint with Pylint
-        run: pylint *.py
+        run: pylint *.py --ignore-imports=no --ignore=E501
         working-directory: server

@@ -27,7 +27,7 @@ def main(dic):
             connect=True,
         )
         my_db = client['reviews']
-        my_doc = my_db.create_document(review)       
+        my_doc = my_db.create_document(review)
         return my_doc, 200
     except CloudantException as cloudant_exception:
         print("unable to connect")

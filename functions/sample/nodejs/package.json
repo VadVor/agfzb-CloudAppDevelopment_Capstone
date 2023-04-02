@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cloudant/cloudant": "^4.4.0"
+    "@ibm-cloud/cloudant": "^0.4.1  "
   },
   "devDependencies": {
     "eslint": "^8.27.0"

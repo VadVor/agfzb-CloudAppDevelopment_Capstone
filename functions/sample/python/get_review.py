@@ -20,9 +20,9 @@ def main (dic):
     except CloudantException as cloudant_exception:
         print("unable to connect")
         return {"error": cloudant_exception}
-    except (requests.exceptions.RequestException, ConnectionResetError) as er:
+    except (requests.exceptions.RequestException, ConnectionResetError) as error:
         print("connection error")
-        return {"error": er}
+        return {"error": error}
 
 if __name__=='__main__':
     main({"dealerId": 15})

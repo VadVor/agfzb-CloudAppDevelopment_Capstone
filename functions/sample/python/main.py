@@ -3,12 +3,11 @@
 Returns:
     List: List of reviews for the given dealership
 """
+import json
+import os
 from cloudant.client import Cloudant
 from cloudant.error import CloudantException
 import requests
-import json
-import os
-
 
 def main():
    current_path = os.getcwd()

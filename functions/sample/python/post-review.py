@@ -4,7 +4,6 @@ from cloudant.client import Cloudant
 from cloudant.error import CloudantException
 import requests
 
-
 def main(dict):
 
     review = {
@@ -26,8 +25,7 @@ def main(dict):
             connect=True,
         )
         my_db = client['reviews']
-        my_doc = my_db.create_document(review)
-        
+        my_doc = my_db.create_document(review)       
         return my_doc, 200
     except CloudantException as cloudant_exception:
         print("unable to connect")
@@ -35,9 +33,6 @@ def main(dict):
     except (requests.exceptions.RequestException, ConnectionResetError) as err:
         print("connection error")
         return {"error": err}
-
-    return {"dbs": client.all_dbs()}
-    client.disconect()
 
 if __name__=='__main__':
     main({"review": {"review_id": 1116, "name": "Upkar Lidder", "dealership": 15, "review": "Great service!", "purchase": False,

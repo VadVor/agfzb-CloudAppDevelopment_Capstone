@@ -12,8 +12,8 @@ import requests
 def main():
     current_path = os.getcwd()
     print(current_path)
-    with open('/.creds-sample.json', 'r') as file:
-    config = json.load(file)
+    with open('/.creds-sample.json', 'r') as files:
+    config = json.load(files)
     try:
             client = Cloudant.iam(None,config['IAM_API_KEY'],
             url=config["COUCH_URL"],connect=True,)

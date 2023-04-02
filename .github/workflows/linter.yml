@@ -43,7 +43,6 @@ jobs: # list of things to do
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint with Pylint
         run: pylint disable=line-too-long
-        run: pylint *.py --ignore-imports=no
         working-directory: functions/sample/python
 
   lint_django_server:

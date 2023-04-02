@@ -1,8 +1,9 @@
+""" get review by dealerId """
 import requests
 from cloudant.client import Cloudant
 from cloudant.error import CloudantException
 
-def main(dict):
+def main (dic):
     """ get review by dealerID"""
     try:
         client = Cloudant.iam(None,"HdyKq8n3jjkkvWgISvfi5x4cjYbJ-aapt3CB9r0joitf",
@@ -10,7 +11,7 @@ def main(dict):
             connect=True,
         )
         my_db = client['reviews']
-        my_doc = my_db.get_query_result(selector = {'dealership':{'$eq':int(dict["dealerId"])}})
+        my_doc = my_db.get_query_result(selector = {'dealership':{'$eq':int(dic["dealerId"])}})
         for doc in my_doc:
             print(doc)
         return my_doc, 200

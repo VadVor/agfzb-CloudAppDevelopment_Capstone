@@ -1,6 +1,6 @@
+import requests
 from cloudant.client import Cloudant
 from cloudant.error import CloudantException
-import requests
 
 def main(dict):
     """ get review by dealerID"""

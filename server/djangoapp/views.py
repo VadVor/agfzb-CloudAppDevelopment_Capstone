@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import CarDealer, CarModel, CarMake
-from .restapis import get_dealers_from_cf
+from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -92,7 +92,6 @@ def get_dealerships(request):
     context = {}
     if request.method == "GET": 
         url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/adb7836c-23f9-4b12-af09-ee3f31cc99cc/dealership-package/get-dealership"
-        apikey="HdyKq8n3jjkkvWgISvfi5x4cjYbJ-aapt3CB9r0joitf"
         # Get dealers from the URL
         dealerships = get_dealers_from_cf(url)
         # Concat all dealer's short name
@@ -103,8 +102,16 @@ def get_dealerships(request):
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
 # def get_dealer_details(request, dealer_id):
-# ...
-
+def get_dealer_details(request, dealer_id):
+    context = {}
+    if request.method == "GET": 
+        url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/adb7836c-23f9-4b12-af09-ee3f31cc99cc/dealership-package/get-review"
+        # Get dealers from the URL
+        dealer_details = get_dealer_reviews_from_cf(url, dealer_id)
+        # Concat all dealer's short name
+        context["dealer_details"]=dealer_details
+        # Return a list of dealer short name
+        return render(request, 'djangoapp/dealer_details.html', context)
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...

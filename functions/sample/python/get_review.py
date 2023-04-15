@@ -25,4 +25,4 @@ def main (dic):
         return {"error": error}
 
 if __name__=='__main__':
-    main({"dealerId": 15})
+    main(   {'dealerId': 1})

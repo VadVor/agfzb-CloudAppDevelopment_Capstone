@@ -83,7 +83,9 @@
     </nav>
 
     <main role="main" class="container pt-3">
-      {% if dealer_details %}
+      {% if dealer_details %} {% for name in dealer %}
+      <h3>Reviews for <b>{{name.full_name}}</b></h3>
+      {% endfor %}
       <div class="card-columns">
         {% for detail in dealer_details %}
 
@@ -106,7 +108,7 @@
             style="min-height: 74px"
           >
             {% if detail.purchase == True%} {{detail.car_year}}
-            {{detail.car_make}} {{detail.car_model}}
+            {{detail.car_model}}
             <br />
             Purchased on: {{detail.purchase_date}} {% else %}
             <br />
@@ -149,6 +151,18 @@
               There are no reviews for this dealership. Be the first to write
               one!
             </p>
+          </div>
+          <div class="card-footer text-center" style="min-height: 74px">
+            {% if user.is_authenticated %}
+            <a
+              class="btn btn-success btn-lg"
+              type="submit"
+              href="{% url 'djangoapp:add_review' dealer_id %}"
+              >Write a Review!</a
+            >
+            {% else %}
+            <p class="btn btn-warning nohover">Login to write a review!</p>
+            {% endif %}
           </div>
         </div>
         {% endif %}

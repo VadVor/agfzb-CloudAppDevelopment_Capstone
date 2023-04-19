@@ -115,11 +115,15 @@ def get_dealer_details(request, dealer_id):
     context = {}
     if request.method == "GET":
         url = "https://eu-gb.functions.appdomain.cloud/api/v1/web/adb7836c-23f9-4b12-af09-ee3f31cc99cc/dealership-package/get-review"
+
+        url_dealer = "https://eu-gb.functions.appdomain.cloud/api/v1/web/adb7836c-23f9-4b12-af09-ee3f31cc99cc/dealership-package/get-dealership"
         # Get dealers from the URL
         dealer_details = get_dealer_reviews_from_cf(url, dealer_id)
+        dealer = get_dealers_from_cf(url_dealer, dealerId=dealer_id)
         # Concat all dealer's short name
         context["dealer_id"] = dealer_id
         context["dealer_details"] = dealer_details
+        context["dealer"] = dealer
         # Return a list of dealer short name
         return render(request, 'djangoapp/dealer_details.html', context)
 
@@ -141,7 +145,7 @@ def add_review(request, dealer_id):
     elif request.method == 'POST':
         if (request.user.is_authenticated):
             review = {}
-            # review["id"] = 0  # placeholder
+            review["id"] = 2
             review["name"] = request.POST["name"]
             review["dealership"] = dealer_id
             review["review"] = request.POST["content"]
@@ -152,9 +156,8 @@ def add_review(request, dealer_id):
             if review["purchase"] == True:
                 car_parts = request.POST["car"].split("|")
                 review["purchase_date"] = request.POST["purchase_date"]
-                review["car_make"] = car_parts[0]
-                review["car_model"] = car_parts[1]
-                review["car_year"] = car_parts[2]
+                review["car_model"] = car_parts[0]
+                review["car_year"] = car_parts[1]
 
             else:
                 review["purchase_date"] = None

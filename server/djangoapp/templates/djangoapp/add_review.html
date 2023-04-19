@@ -124,11 +124,8 @@
         <br />
         <select name="car" id="car" class="form-select" required disabled>
           {% for car in cars %}
-          <option
-            selected
-            value="{{car.make.name}}|{{car.name}}|{{ car.year|date:'Y' }}"
-          >
-            {{ car.year|date:"Y" }} {{car.make.name}} {{car.name}}
+          <option selected value="{{car.name}}|{{ car.year|date:'Y' }}">
+            {{ car.year|date:"Y" }} {{car.name}}
           </option>
           {% endfor %}
         </select>
